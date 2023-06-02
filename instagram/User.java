@@ -1,28 +1,59 @@
 package instagram;
 
-import java.util.ArrayList;
 
 public class User {
-    private String name;
-    private int age;
-    private String gender;
+    private String username;
+    private String password; 
+    private String email;     
+    private UserProfile profile;
 
-    ArrayList<UserProfile> profiles = new ArrayList<>();
+    public User(String username, String password, String email) {
+        this.username = username;     
+        this.password = password;
+        this.email = email;   
+    }   
 
-    public User(String name, int age, String gender) {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
+    public String getUsername() {
+        return username;
     }
 
-    public void createProfile(String username, String password) {
-        UserProfile myProfile = new UserProfile(this, username, password);
-        this.profiles.add(myProfile);
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public UserProfile createProfile(Instagram instagram, String profileName, String bio, String image) {
+        UserProfile myProfile = new UserProfile(this, profileName, password, image);
+        this.profile = myProfile;
+        instagram.profiles.add(myProfile);
+        return this.profile;
+    }
+
+    public UserProfile getProfile() {
+        return profile;
+    }  
+    
+
+    @Override
+    public String toString() {
+        return "User [username=" + username + ", email=" + email + "]";
     }
 
     
-
-
     
 }
