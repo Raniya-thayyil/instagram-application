@@ -1,30 +1,29 @@
 package instagram;
 
+import java.time.LocalDate;
+
 public class Story {
 
-    // Reel reel;
-    // Post post;
     UserProfile profile;
+
     private String imageOrVideoUrl;
     private String text;
+    LocalDate updatedDate;
 
-    // public Story(Reel reel) {
-    //     this.reel = reel;
-    // }
+    public Story(UserProfile profileName, String texts, String imageOrVideoUrl, LocalDate updatedDate) {
 
-    // public Story(Post post) {
-    //     this.post = post;
-    // }
-
-    public Story(String texts, String imageOrVideoUrl) {
         this.imageOrVideoUrl = imageOrVideoUrl;
         this.text = texts;
+        this.updatedDate = updatedDate;
+        this.profile = profileName;
 
     }
 
     @Override
     public String toString() {
-        return "Story [imageOrVideoUrl=" + imageOrVideoUrl + ", text=" + text + "]";
+        return "Story [profile name=" + profile.getProfileName() + ", imageOrVideoUrl=" + imageOrVideoUrl + ", text="
+                + text
+                + ", updatedDate=" + updatedDate + "]";
     }
 
 }
