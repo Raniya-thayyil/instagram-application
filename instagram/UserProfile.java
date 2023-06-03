@@ -1,11 +1,10 @@
 package instagram;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class UserProfile {
+    
     private User user;
     private String profileName;
     private String profilePictureUrl;
@@ -54,7 +53,8 @@ public class UserProfile {
     }
 
     public int getFollowersCount() {
-        return this.followers.size();
+        this.followersCount =  this.followers.size();
+        return this.followersCount;
     }
 
     public void setFollowersCount(int followersCount) {
@@ -70,8 +70,8 @@ public class UserProfile {
     }
 
     public int getFollowingCount() {
-
-        return this.following.size();
+        this.followingCount = this.following.size();
+        return this.followingCount;
     }
 
     public void setFollowingCount(int followingCount) {
@@ -88,7 +88,7 @@ public class UserProfile {
 
     public Story getMystory() {
         return mystory;
-    }    
+    }
 
     public ArrayList<Story> getMyStories() {
         return myStories;
@@ -108,9 +108,15 @@ public class UserProfile {
         return true;
     }
 
-    public void uploadPost(int id, String caption, String image, LocalDate date) {
+    public boolean uploadPost(int id, String caption, String image, LocalDate date) {
         Post post = new Post(this, id, caption, image, date);
+        for (Post mypost : this.myPosts) {
+            if (mypost.getId() == id) {
+                return false;
+            }
+        }
         this.myPosts.add(post);
+        return true;
 
     }
 
@@ -119,13 +125,22 @@ public class UserProfile {
         this.myReels.add(reel);
     }
 
-    public void deletePost(int id) {
+    public boolean deletePost(int id) {
         for (Post post : this.myPosts) {
             if (id == post.getId()) {
                 this.myPosts.remove(post);
+                return true;
             }
         }
+        return false;
+    }
 
+    public void editPost(int postId, String editedCaption) {
+        for (Post post : this.myPosts) {
+            if (post.getId() == postId) {
+                post.setCaption(editedCaption);
+            }
+        }
     }
 
     public void likePost(UserProfile profile, int id) {
@@ -150,10 +165,8 @@ public class UserProfile {
         for (Reel reel : profile.myReels) {
             if (reel.getId() == id) {
                 reel.commentsList.add(myComment);
-
             }
         }
-
     }
 
     public void commentPost(UserProfile profile, int id, String comment) {
@@ -162,27 +175,48 @@ public class UserProfile {
         for (Post post : profile.myPosts) {
             if (post.getId() == id) {
                 post.commentsList.add(myComment);
-
             }
         }
+    }
+
+    public void sharePost() {
+
+    }
+
+    public boolean tagUser(UserProfile profile, int postId) {
+        for (Post post : this.myPosts) {
+            if (post.getId() == postId) {
+                post.tags.add(profile);
+                return true;
+            }
+        }
+        return false;
 
     }
 
     public boolean searchUserProfile(Instagram instagram, String profilename) {
         for (UserProfile profile : instagram.profiles) {
-            if (profile.getProfileName() != profilename) {
-                return false;
+            if (profile.getProfileName() == profilename) {
+                return true;
             }
         }
-        return true;
+        return false;
 
     }
 
-    public void updateStory(String texts, String imageOrVideoUrl) {
-        mystory = new Story(texts, imageOrVideoUrl);
+    public void updateStory(String texts, String imageOrVideoUrl, LocalDate updatedDate) {
+        LocalDate date = updatedDate;
+        LocalDate oneDayAfter = date.plusDays(1);
+
+        mystory = new Story(this, texts, imageOrVideoUrl, updatedDate);
         this.myStories.add(mystory);
-    }   
-    
+
+        if (LocalDate.now().compareTo(oneDayAfter) == 0) {
+            this.myStories.remove(mystory);
+
+        }
+
+    }
 
     @Override
     public String toString() {

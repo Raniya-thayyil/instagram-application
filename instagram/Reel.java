@@ -3,7 +3,7 @@ package instagram;
 public class Reel extends Content {
 
     private String videoUrl;
-    private int id;
+    
 
     public Reel(int id, UserProfile profile, String caption, String videoUrl) {
         this.profile = profile;
@@ -21,13 +21,7 @@ public class Reel extends Content {
         this.videoUrl = videoUrl;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    
 
     @Override
     public String toString() {

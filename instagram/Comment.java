@@ -3,6 +3,7 @@ package instagram;
 public class Comment {
 
     UserProfile profile;
+    
     private String comment;
 
     public Comment(UserProfile profile, String comment) {
@@ -30,10 +31,4 @@ public class Comment {
     public String toString() {
         return "Comments [profile=" + profile.getProfileName() + ", comment=" + comment + "]";
     }
-    
-
-    
-
-
-
 }

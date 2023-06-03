@@ -1,6 +1,7 @@
 package instagram;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Feed {
 
@@ -26,16 +27,19 @@ public class Feed {
     }
 
     public ArrayList<Post> getPostsOfFollowingUsers() {
+        Collections.sort(this.postsOfFollowingUsers, new sortPost().reversed());
         return postsOfFollowingUsers;
     }
 
     public ArrayList<Reel> getReelsOfFollowingUsers() {
+        Collections.sort(this.reelsOfFollowingUsers, new sortReel());
         return reelsOfFollowingUsers;
     }
 
     public ArrayList<Story> getStoriesOfFollowingUsers() {
         return storiesOfFollowingUsers;
-    }  
+    } 
+   
 
     @Override
     public String toString() {
