@@ -9,14 +9,17 @@ public class Main {
         Instagram instagram = new Instagram();
 
         User abin = new User("abin", "abin2123", "abin@gmail.com");
+        instagram.usersList.add(abin);
         abin.createProfile(instagram, "abin_abi", "hi i am abi", "abi.jpg");
         UserProfile abin_abi = abin.getProfile();
 
         User manu = new User("manu_m", "manu123", "man@gmail.com");
+        instagram.usersList.add(manu);
         manu.createProfile(instagram, "manu_man", "hey there", "manu.jpg");
         UserProfile manu_man = manu.getProfile();
 
         User jo = new User("jo_jo", "jo#21", "jo@gmail.com");
+        instagram.usersList.add(jo);
         jo.createProfile(instagram, "jo_ann", "call me jo", "jo.jpg");
         UserProfile jo_ann = jo.getProfile();
 
@@ -48,9 +51,15 @@ public class Main {
         manu_man.commentReel(abin_abi, 1, "interesting");
 
         abin_abi.updateStory("awsome ride", "car.mp4", LocalDate.of(2023, 6, 3));
-        abin_abi.getFeed().addContentToFeed();
+
+        Feed abisFeed = abin_abi.getFeed();
+        abisFeed.addContentToFeed();        
 
         abin_abi.editPost(1, "deep forest");
+
+        abisFeed.sharePost(manu_man, 1, "jo_ann");
+        abisFeed.sharePost(manu_man, 2, "jo_ann");
+        abisFeed.shareReel(jo_ann, 1, "manu_man");
 
         System.out.println("abi's profile: ");
         System.out.println("abi's following list: " + abin_abi.following);
@@ -60,6 +69,13 @@ public class Main {
         System.out.println();
         System.out.println("story of abin: " + abin_abi.getMystory());
         System.out.println();
-        System.out.println("Feed of abin:" + abin_abi.getFeed());        
+        System.out.println("Feed of abin:" + abisFeed);     
+        System.out.println();        
+        
+        System.out.println("abi's inbox: " + abin_abi.getShareDetail());
+        System.out.println("manu's inbox: " + manu_man.getShareDetail());
+        System.out.println("jo's inbox: " + jo_ann.getShareDetail());      
+
+        
     }
 }

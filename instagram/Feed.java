@@ -38,15 +38,32 @@ public class Feed {
 
     public ArrayList<Story> getStoriesOfFollowingUsers() {
         return storiesOfFollowingUsers;
-    } 
-   
+    }
+
+    public void sharePost(UserProfile profile, int postIdToShare, String profileNameOfPostHolder) {
+
+        for (Post post : this.postsOfFollowingUsers) {
+            if (post.getId() == postIdToShare && post.getProfile().getProfileName() == profileNameOfPostHolder) {
+                this.profile.getShareDetail().sharedPosts.add(post);
+                profile.getShareDetail().recievedPosts.add(post);
+            }
+        }
+    }
+
+    public void shareReel(UserProfile profile, int reelIdToShare, String profileNameOfReelHolder) {
+
+        for (Reel reel : this.reelsOfFollowingUsers) {
+            if (reel.getId() == reelIdToShare && reel.getProfile().getProfileName() == profileNameOfReelHolder) {
+                profile.getShareDetail().recievedReels.add(reel);
+            }
+        }
+    }
 
     @Override
     public String toString() {
         return "Feed [profileName=" + profile.getProfileName() + ", story=" + this.profile.myStories
-                + ", postsOfFollowingUsers=" +  this.getPostsOfFollowingUsers()
+                + ", postsOfFollowingUsers=" + this.getPostsOfFollowingUsers()
                 + ", reelsOfFollowingUsers=" + this.getReelsOfFollowingUsers() + ", storiesOfFollowingUsers="
                 + this.getStoriesOfFollowingUsers() + "]";
     }
-
 }
