@@ -13,6 +13,7 @@ public class UserProfile {
     private String bio;
     private Feed feed;
     private Story mystory;
+    private Share shareDetail;
 
     ArrayList<UserProfile> followers = new ArrayList<>();
     ArrayList<UserProfile> following = new ArrayList<>();
@@ -26,6 +27,7 @@ public class UserProfile {
         this.profileName = profileName;
         this.profilePictureUrl = profilePictureUrl;
         this.feed = new Feed(this);
+        this.shareDetail = new Share(this);
     }
 
     public User getUser() {
@@ -46,6 +48,14 @@ public class UserProfile {
 
     public String getProfilePicture() {
         return profilePictureUrl;
+    }    
+
+    public Share getShareDetail() {
+        return shareDetail;
+    }
+
+    public void setShareDetail(Share shareDetail) {
+        this.shareDetail = shareDetail;
     }
 
     public void setProfilePicture(String profilePicture) {
@@ -117,8 +127,8 @@ public class UserProfile {
         }
         this.myPosts.add(post);
         return true;
-
     }
+    
 
     public void uploadReel(int id, String caption, String videoUrl) {
         Reel reel = new Reel(id, this, caption, videoUrl);
@@ -191,7 +201,6 @@ public class UserProfile {
             }
         }
         return false;
-
     }
 
     public boolean searchUserProfile(Instagram instagram, String profilename) {
@@ -201,7 +210,6 @@ public class UserProfile {
             }
         }
         return false;
-
     }
 
     public void updateStory(String texts, String imageOrVideoUrl, LocalDate updatedDate) {
@@ -213,16 +221,13 @@ public class UserProfile {
 
         if (LocalDate.now().compareTo(oneDayAfter) == 0) {
             this.myStories.remove(mystory);
-
         }
-
     }
 
     @Override
     public String toString() {
-        return "UserProfile [user=" + user + ", profileName=" + profileName + ", profilePictureUrl=" + profilePictureUrl
+        return "UserProfile [profileName=" + profileName + ", profilePictureUrl=" + profilePictureUrl
                 + ", followersCount=" + this.getFollowersCount() + ", followingCount=" + this.getFollowingCount()
                 + ", bio=" + bio + "]";
     }
-
 }

@@ -14,8 +14,7 @@ public class Content {
     protected int likes;
     private int comments;
     private Comment comment;
-    protected LocalDate uploadedDate;
-    
+    protected LocalDate uploadedDate;    
 
     ArrayList<UserProfile> likedUsersList = new ArrayList<>();
     ArrayList<Comment> commentsList = new ArrayList<>();
