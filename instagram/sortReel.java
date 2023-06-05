@@ -11,5 +11,4 @@ public class sortReel implements Comparator<Reel> {
         return compareValue;
 
     }
-
 }
