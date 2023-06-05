@@ -127,8 +127,7 @@ public class UserProfile {
         }
         this.myPosts.add(post);
         return true;
-    }
-    
+    }    
 
     public void uploadReel(int id, String caption, String videoUrl) {
         Reel reel = new Reel(id, this, caption, videoUrl);
