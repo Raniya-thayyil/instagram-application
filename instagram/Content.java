@@ -2,8 +2,9 @@ package instagram;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Content {
+public class Content implements Comparator<Content>{
 
     Instagram instagram;
     UserProfile profile;
@@ -70,9 +71,64 @@ public class Content {
         return id;
     }
 
-    public void setId(int id) {        
-        this.id = id;        
+    public void setId(int id) {
+        if (id > 0) {
+            this.id = id;
+        }
     }   
+
+    public void like(UserProfile profile) { 
+        this.likedUsersList.add(profile);
+    }
+
+    public void comment(UserProfile profile, String comment) {
+        Comment commentOnContent = new Comment(profile, comment);
+        this.commentsList.add(commentOnContent);
+    }
+
+    public void delete() {
+        if (this.profile.myPosts.contains(this)) {
+            this.profile.myPosts.remove(this);
+            for (UserProfile profile : this.profile.following) {
+                profile.getFeed().postsOfFollowingUsers.remove(this);
+            }
+
+        } else if (this.profile.myReels.contains(this)) {
+            this.profile.myReels.remove(this);
+            for (UserProfile profile : this.profile.following) {
+                profile.getFeed().reelsOfFollowingUsers.remove(this);
+            }
+        }
+    }
+
+    public void edit(String newCaption) {
+        if (this.profile.myPosts.contains(this)) {
+            this.setCaption(newCaption);
+
+        } else if (this.profile.myReels.contains(this)) {
+            this.setCaption(newCaption);
+        } 
+      
+    }
+
+    public void tagUser(UserProfile profile) {
+        this.tags.add(profile);
+        
+    }
+
+    public void share() {
+
+    }
+
+    @Override
+    public int compare(Content firstContent, Content nextContent) {
+
+        int compareValue = firstContent.getUploadedDate().compareTo(nextContent.getUploadedDate());
+        return compareValue;
+
+        
+    }
+
 
     @Override
     public String toString() {

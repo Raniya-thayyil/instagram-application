@@ -1,7 +1,6 @@
 package instagram;
 
 public class User {
-    
     private String username;
     private String password;
     private String email;
@@ -55,11 +54,17 @@ public class User {
         return true;
     }
 
-    public UserProfile createProfile(Instagram instagram, String profileName, String bio, String image) {
+    public boolean createProfile(Instagram instagram, String profileName, String bio, String image) {
+
+        for (UserProfile profile : instagram.profiles) {
+            if (profile.getProfileName() == profileName) {
+                return false;
+            }
+        }
         UserProfile myProfile = new UserProfile(this, profileName, password, image);
         this.profile = myProfile;
         instagram.profiles.add(myProfile);
-        return this.profile;
+        return true;
     }
 
     public UserProfile getProfile() {
