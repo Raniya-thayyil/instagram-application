@@ -14,6 +14,8 @@ public class UserProfile {
     private Feed feed;
     private Story mystory;
     private Share shareDetail;
+    
+
 
     ArrayList<UserProfile> followers = new ArrayList<>();
     ArrayList<UserProfile> following = new ArrayList<>();
@@ -118,89 +120,101 @@ public class UserProfile {
         return true;
     }
 
-    public boolean uploadPost(int id, String caption, String image, LocalDate date) {
-        Post post = new Post(this, id, caption, image, date);
-        for (Post mypost : this.myPosts) {
-            if (mypost.getId() == id) {
-                return false;
-            }
-        }
-        this.myPosts.add(post);
-        return true;
-    }    
+    // public boolean uploadPost(int id, String caption, String image, LocalDate date) {
+    //     Post post = new Post(this, id, caption, image, date);
+    //     for (Post mypost : this.myPosts) {
+    //         if (mypost.getId() == id) {
+    //             return false;
+    //         }
+    //     }
+    //     this.myPosts.add(post);
+    //     return true;
+    // }    
 
-    public void uploadReel(int id, String caption, String videoUrl) {
-        Reel reel = new Reel(id, this, caption, videoUrl);
-        this.myReels.add(reel);
-    }
+    // public boolean uploadReel(int id, String caption, String videoUrl) {
+    //     Reel reel = new Reel(id, this, caption, videoUrl);
+    //     for (Reel myReel : this.myReels) {
+    //         if (myReel.getId() == id) {
+    //             return false;
+    //         }
+    //     }
+    //     this.myReels.add(reel);
+    //     return true;
+    // }
 
-    public boolean deletePost(int id) {
-        for (Post post : this.myPosts) {
-            if (id == post.getId()) {
-                this.myPosts.remove(post);
-                return true;
-            }
-        }
-        return false;
-    }
+    // public boolean deletePost(int id) {
+    //     for (Post post : this.myPosts) {
+    //         if (id == post.getId()) {
+    //             this.myPosts.remove(post);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
-    public void editPost(int postId, String editedCaption) {
-        for (Post post : this.myPosts) {
-            if (post.getId() == postId) {
-                post.setCaption(editedCaption);
-            }
-        }
-    }
+    // public boolean editPost(int postId, String editedCaption) {
+    //     for (Post post : this.myPosts) {
+    //         if (post.getId() == postId) {
+    //             post.setCaption(editedCaption);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
-    public void likePost(UserProfile profile, int id) {
-        for (Post post : profile.myPosts) {
-            if (post.getId() == id) {
-                post.likedUsersList.add(profile);
-            }
-        }
-    }
+    // public boolean likePost(UserProfile profile, int id) {
+    //     for (Post post : profile.myPosts) {
+    //         if (post.getId() == id) {
+    //             post.likedUsersList.add(profile);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
-    public void likeReel(UserProfile profile, int id) {
-        for (Reel reel : profile.myReels) {
-            if (reel.getId() == id) {
-                reel.likedUsersList.add(profile);
-            }
-        }
-    }
+    // public boolean likeReel(UserProfile profile, int id) {
+    //     for (Reel reel : profile.myReels) {
+    //         if (reel.getId() == id) {
+    //             reel.likedUsersList.add(profile);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
-    public void commentReel(UserProfile profile, int id, String comment) {
+    // public boolean commentReel(UserProfile profile, int id, String comment) {
 
-        Comment myComment = new Comment(this, comment);
-        for (Reel reel : profile.myReels) {
-            if (reel.getId() == id) {
-                reel.commentsList.add(myComment);
-            }
-        }
-    }
+    //     Comment myComment = new Comment(this, comment);
+    //     for (Reel reel : profile.myReels) {
+    //         if (reel.getId() == id) {
+    //             reel.commentsList.add(myComment);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
-    public void commentPost(UserProfile profile, int id, String comment) {
+    // public boolean commentPost(UserProfile profile, int id, String comment) {
 
-        Comment myComment = new Comment(this, comment);
-        for (Post post : profile.myPosts) {
-            if (post.getId() == id) {
-                post.commentsList.add(myComment);
-            }
-        }
-    }
-
-    public void sharePost() {
-
-    }
-
-    public boolean tagUser(UserProfile profile, int postId) {
-        for (Post post : this.myPosts) {
-            if (post.getId() == postId) {
-                post.tags.add(profile);
-                return true;
-            }
-        }
-        return false;
-    }
+    //     Comment myComment = new Comment(this, comment);
+    //     for (Post post : profile.myPosts) {
+    //         if (post.getId() == id) {
+    //             post.commentsList.add(myComment);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+  
+    // public boolean tagUser(UserProfile profile, int postId) {
+    //     for (Post post : this.myPosts) {
+    //         if (post.getId() == postId) {
+    //             post.tags.add(profile);
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 
     public boolean searchUserProfile(Instagram instagram, String profilename) {
         for (UserProfile profile : instagram.profiles) {
@@ -211,17 +225,17 @@ public class UserProfile {
         return false;
     }
 
-    public void updateStory(String texts, String imageOrVideoUrl, LocalDate updatedDate) {
-        LocalDate date = updatedDate;
-        LocalDate oneDayAfter = date.plusDays(1);
+    // public void updateStory(String texts, String imageOrVideoUrl, LocalDate updatedDate) {
+    //     LocalDate date = updatedDate;
+    //     LocalDate oneDayAfter = date.plusDays(1);
 
-        mystory = new Story(this, texts, imageOrVideoUrl, updatedDate);
-        this.myStories.add(mystory);
+    //     mystory = new Story(this, texts, imageOrVideoUrl, updatedDate);
+    //     this.myStories.add(mystory);
 
-        if (LocalDate.now().compareTo(oneDayAfter) == 0) {
-            this.myStories.remove(mystory);
-        }
-    }
+    //     if (LocalDate.now().compareTo(oneDayAfter) == 0) {
+    //         this.myStories.remove(mystory);
+    //     }
+    // }
 
     @Override
     public String toString() {

@@ -16,27 +16,28 @@ public class Feed {
     ArrayList<Reel> reelsOfFollowingUsers = new ArrayList<>();
     ArrayList<Story> storiesOfFollowingUsers = new ArrayList<>();
 
-    public void addContentToFeed() {
-        for (UserProfile profile : this.profile.following) {
-            this.postsOfFollowingUsers.addAll(profile.myPosts);
-            this.reelsOfFollowingUsers.addAll(profile.myReels);
-            this.storiesOfFollowingUsers.addAll(profile.myStories);
+    // public void addContentToFeed() {
+    //     for (UserProfile profile : this.profile.following) {
+    //         this.postsOfFollowingUsers.addAll(profile.myPosts);
+    //         this.reelsOfFollowingUsers.addAll(profile.myReels);
+    //         this.storiesOfFollowingUsers.addAll(profile.myStories);
 
-            this.story = this.profile.getMystory();
-        }
-    }
+    //         this.story = this.profile.getMystory();
+    //     }
+    // }
 
     public ArrayList<Post> getPostsOfFollowingUsers() {
-        Collections.sort(this.postsOfFollowingUsers, new sortPost().reversed());
+        Collections.sort(this.postsOfFollowingUsers, new Content().reversed());
         return postsOfFollowingUsers;
     }
 
     public ArrayList<Reel> getReelsOfFollowingUsers() {
-        Collections.sort(this.reelsOfFollowingUsers, new sortReel());
+        Collections.sort(this.reelsOfFollowingUsers, new Content().reversed());
         return reelsOfFollowingUsers;
     }
 
-    public ArrayList<Story> getStoriesOfFollowingUsers() {
+    public ArrayList<Story> getStoriesOfFollowingUsers() {  
+        Collections.sort(this.reelsOfFollowingUsers, new Content().reversed());      
         return storiesOfFollowingUsers;
     }
 
