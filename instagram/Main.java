@@ -59,11 +59,14 @@ public class Main {
         friendsStory.updateStory();
         Story holydayTrip = new Story(jo_ann, "holyday", "trip.mp4", LocalDate.of(2023, 6, 6));
         holydayTrip.updateStory();
+        holydayTrip.delete();
         
         Reel familyVideo = new Reel(1, manu_man, "family", "family.mp4");
         familyVideo.uploadReel();        
         Story birthdayStory = new Story(manu_man, "happy birthday", "hbd.jpg", LocalDate.of(2023, 6, 5));
         birthdayStory.updateStory();
+        Story weddingDay = new Story(manu_man, "happy wedding", "wedding.jpg", LocalDate.of(2023, 6, 6));
+        weddingDay.updateStory();
 
         Feed abisFeed = abin_abi.getFeed();      
 

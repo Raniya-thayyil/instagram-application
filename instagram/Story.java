@@ -35,6 +35,13 @@ public class Story extends Content{
         }
     } 
 
+    public void delete() {
+        this.profile.myStories.remove(this);
+        for (UserProfile profile : this.profile.following) {
+            profile.getFeed().storiesOfFollowingUsers.remove(this);
+        } 
+    }
+
     @Override
     public String toString() {
         return "Story [profile name=" + profile.getProfileName() + ", imageOrVideoUrl=" + imageOrVideoUrl + ", text="

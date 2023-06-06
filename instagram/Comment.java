@@ -32,11 +32,11 @@ public class Comment {
         this.comment = comment;
     }
 
-    public ArrayList<Comment> getReplays() {
+    public ArrayList<Comment> getReplys() {
         return replys;
     }
 
-    public void setReplays(ArrayList<Comment> replys) {
+    public void setReplys(ArrayList<Comment> replys) {
         this.replys = replys;
     }  
 
