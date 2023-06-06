@@ -1,6 +1,5 @@
 package instagram;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -13,32 +12,13 @@ public class UserTest {
 
         User abin = new User("abin", "abin2123", "abin@gmail.com");
         instagram.usersList.add(abin);
-        boolean got = abin.createProfile(instagram, "abin_abi", "hi i am abi", "abi.jpg");        
+        boolean got = abin.createProfile(instagram, "abin_abi", "hi i am abi", "abi.jpg");
 
         assertTrue(got);
 
-        //test case 2
+        // test case 2
         User eby = new User("abin", "eb12", "eby@gmail.com");
         boolean got1 = eby.createProfile(instagram, "abin_abi", "hello", "me.jpg");
         assertFalse(got1);
-    }
-
-    @Test
-    public void testSetEmail() {
-
-    }
-
-    @Test
-    public void testSetPassword() {
-
-    }
-
-    @Test
-    public void testSetUsername() {     
-
-
-        
-     
-
     }
 }

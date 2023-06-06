@@ -1,14 +1,19 @@
 package instagram;
 
+import java.util.ArrayList;
+
 public class Comment {
 
     UserProfile profile;
     
     private String comment;
+    private int id;
+    ArrayList<Comment> replys = new ArrayList<>();
 
-    public Comment(UserProfile profile, String comment) {
+    public Comment(UserProfile profile, int id, String comment) {
         this.profile = profile;
         this.comment = comment;
+        this.id = id;
     }
 
     public UserProfile getProfile() {
@@ -27,8 +32,26 @@ public class Comment {
         this.comment = comment;
     }
 
+    public ArrayList<Comment> getReplays() {
+        return replys;
+    }
+
+    public void setReplays(ArrayList<Comment> replys) {
+        this.replys = replys;
+    }  
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "Comments [profile=" + profile.getProfileName() + ", comment=" + comment + "]";
-    }
+        return "Comment [profile=" + profile + ", comment=" + comment + ", id=" + id + ", replys=" + replys + "]";
+    } 
+
+       
 }

@@ -29,9 +29,11 @@ public class Story extends Content{
 
         if (LocalDate.now().compareTo(oneDayAfter) == 0) {
             this.profile.myStories.remove(this);
+            for (UserProfile profile : this.profile.following) {
+                profile.getFeed().storiesOfFollowingUsers.remove(this);
+            } 
         }
-
-    }
+    } 
 
     @Override
     public String toString() {

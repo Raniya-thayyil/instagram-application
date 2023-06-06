@@ -4,33 +4,21 @@ import java.util.ArrayList;
 
 public class Share {
 
-    UserProfile profile;    
+    UserProfile profile;
 
     public Share(UserProfile profile) {
         this.profile = profile;
-    } 
-
-    ArrayList<Post> sharedPosts = new ArrayList<>();
-    ArrayList<Post> recievedPosts = new ArrayList<>();
-
-    ArrayList<Reel> recievedReels =new ArrayList<>();
-
-    public ArrayList<Post> getSharedPosts() {
-        return sharedPosts;
     }
 
-    public ArrayList<Post> getRecievedPosts() {
-        return recievedPosts;
-    }
+    ArrayList<Content> sharedContents = new ArrayList<>();
 
-    public ArrayList<Reel> getRecievedReel() {
-        return recievedReels;
+    public ArrayList<Content> getSharedContents() {
+        return sharedContents;
     }
 
     @Override
     public String toString() {
-        return "[sharedPosts by =" + sharedPosts + ", recievedPosts=" + recievedPosts + ", recievedReels="
-                + recievedReels + "]";
+        return "Share [sharedContents by=" + sharedContents + "]";
     }
 
 }

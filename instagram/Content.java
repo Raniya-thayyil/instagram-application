@@ -6,7 +6,6 @@ import java.util.Comparator;
 
 public class Content implements Comparator<Content>{
 
-    Instagram instagram;
     UserProfile profile;
 
     protected int id;
@@ -81,9 +80,24 @@ public class Content implements Comparator<Content>{
         this.likedUsersList.add(profile);
     }
 
-    public void comment(UserProfile profile, String comment) {
-        Comment commentOnContent = new Comment(profile, comment);
+    public boolean comment(UserProfile profile, String comment, int commentId) {
+        Comment commentOnContent = new Comment(profile, commentId, comment);
+        for (Comment remark : this.commentsList) {
+            if (remark.getId() == commentId) {
+                return false;
+            }
+        }
         this.commentsList.add(commentOnContent);
+        return true;
+    }
+
+    public void replyToComment(UserProfile profile, int commentId, String replyComment) {
+        Comment replyToComment = new Comment(this.profile, commentId, replyComment);
+        for (Comment comment : this.commentsList) {
+            if (comment.getId() == commentId) {
+                comment.replys.add(replyToComment);
+            }
+        }   
     }
 
     public void delete() {
@@ -98,7 +112,7 @@ public class Content implements Comparator<Content>{
             for (UserProfile profile : this.profile.following) {
                 profile.getFeed().reelsOfFollowingUsers.remove(this);
             }
-        }
+        } 
     }
 
     public void edit(String newCaption) {
@@ -107,34 +121,29 @@ public class Content implements Comparator<Content>{
 
         } else if (this.profile.myReels.contains(this)) {
             this.setCaption(newCaption);
-        } 
-      
+        }       
     }
 
     public void tagUser(UserProfile profile) {
-        this.tags.add(profile);
-        
+        this.tags.add(profile);        
     }
 
-    public void share() {
-
+    public void share(UserProfile profile) {
+        if (this.profile.following.contains(profile)) {
+            profile.getShareDetail().sharedContents.add(this);
+        }        
     }
 
     @Override
     public int compare(Content firstContent, Content nextContent) {
-
         int compareValue = firstContent.getUploadedDate().compareTo(nextContent.getUploadedDate());
-        return compareValue;
-
-        
+        return compareValue;        
     }
-
 
     @Override
     public String toString() {
         return "Instagram [profile=" + profile + ", caption=" + caption + ", likes=" + likes + ", comments=" + comments
                 + ", comment=" + comment + ", likedUsersList=" + likedUsersList + ", commentsList=" + commentsList
                 + ", tags=" + tags + "]";
-    }
-    
+    }    
 }
