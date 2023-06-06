@@ -1,6 +1,8 @@
 package instagram;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 
@@ -8,7 +10,7 @@ import org.junit.Test;
 
 public class PostTest {
     @Test
-    public void testSetImageUrl() {
+    public void testSetimageOrVideoUrl() {
 
         User eby = new User("eby", "eb12", "eby@gmail.com");
         UserProfile eby_12 = new UserProfile(eby, "eb", "hey", "me.jpg");
@@ -19,14 +21,14 @@ public class PostTest {
 
         // test case 1
         expected = "rose.jpg";
-        got = post.getImageUrl();
+        got = post.getimageOrVideoUrl();
 
         assertEquals(expected, got);
 
         // test case 2
-        post.setImageUrl("flower.jpg");
+        post.setimageOrVideoUrl("flower.jpg");
         expected = "flower.jpg";
-        got = post.getImageUrl();
+        got = post.getimageOrVideoUrl();
 
         assertEquals(expected, got);
 
@@ -81,7 +83,24 @@ public class PostTest {
         assertEquals(expected, got);
     }
 
-    
+    @Test
+    public void testUploadPost() {
+
+        User eby = new User("eby", "eb12", "eby@gmail.com");
+        UserProfile eby_12 = new UserProfile(eby, "eb", "hey", "me.jpg");
+        Post forest = new Post(eby_12, 1, "forest", "forest.jpg", LocalDate.of(2023, 6, 5));
+
+        boolean got;
+
+        // test case 1
+         got = forest.uploadPost();
+        assertTrue(got);
+
+        // test case 2
+        Post home = new Post(eby_12, 1, "homw", "home.jpg", LocalDate.of(2023, 6, 5));
+        got = home.uploadPost();
+        assertFalse(got);
+    }    
 
 
 }

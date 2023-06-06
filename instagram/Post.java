@@ -4,26 +4,22 @@ import java.time.LocalDate;
 
 public class Post extends Content {
 
-    private String imageUrl;
+    private String imageOrVideoUrl;
 
-    public Post(UserProfile profile, int id, String caption, String imageUrl, LocalDate uploadedDate) {
+    public Post(UserProfile profile, int id, String caption, String imageOrVideoUrl, LocalDate uploadedDate) {
         this.profile = profile;
         this.caption = caption;
-        this.imageUrl = imageUrl;
+        this.imageOrVideoUrl = imageOrVideoUrl;
         this.id = id;
         this.uploadedDate = uploadedDate;
+    }  
+
+    public String getimageOrVideoUrl() {
+        return imageOrVideoUrl;
     }
 
-    public Post() {
-
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setimageOrVideoUrl(String imageOrVideoUrl) {
+        this.imageOrVideoUrl = imageOrVideoUrl;
     }
 
     public boolean uploadPost() {
@@ -36,14 +32,13 @@ public class Post extends Content {
         for (UserProfile profile : this.profile.following) {
             profile.getFeed().postsOfFollowingUsers.add(this);
         }
-
         return true;
     }
 
     @Override
     public String toString() {
 
-        return "Post [profileName=" + this.profile.getProfileName() + ", id=" + id + ", imageUrl=" + imageUrl
+        return "Post [profileName=" + this.profile.getProfileName() + ", id=" + id + ", imageOrVideoUrl=" + imageOrVideoUrl
                 + ", caption=" + this.caption + ", uploaded date=" + this.getUploadedDate() + ", likes="
                 + this.getLikes() + ", comments=" + this.getCommentsList() + " , tags=" + this.getTags() + "]";
     }

@@ -16,15 +16,6 @@ public class Feed {
     ArrayList<Reel> reelsOfFollowingUsers = new ArrayList<>();
     ArrayList<Story> storiesOfFollowingUsers = new ArrayList<>();
 
-    // public void addContentToFeed() {
-    //     for (UserProfile profile : this.profile.following) {
-    //         this.postsOfFollowingUsers.addAll(profile.myPosts);
-    //         this.reelsOfFollowingUsers.addAll(profile.myReels);
-    //         this.storiesOfFollowingUsers.addAll(profile.myStories);
-
-    //         this.story = this.profile.getMystory();
-    //     }
-    // }
 
     public ArrayList<Post> getPostsOfFollowingUsers() {
         Collections.sort(this.postsOfFollowingUsers, new Content().reversed());
@@ -39,26 +30,7 @@ public class Feed {
     public ArrayList<Story> getStoriesOfFollowingUsers() {  
         Collections.sort(this.reelsOfFollowingUsers, new Content().reversed());      
         return storiesOfFollowingUsers;
-    }
-
-    public void sharePost(UserProfile profile, int postIdToShare, String profileNameOfPostHolder) {
-
-        for (Post post : this.postsOfFollowingUsers) {
-            if (post.getId() == postIdToShare && post.getProfile().getProfileName() == profileNameOfPostHolder) {
-                this.profile.getShareDetail().sharedPosts.add(post);
-                profile.getShareDetail().recievedPosts.add(post);
-            }
-        }
-    }
-
-    public void shareReel(UserProfile profile, int reelIdToShare, String profileNameOfReelHolder) {
-
-        for (Reel reel : this.reelsOfFollowingUsers) {
-            if (reel.getId() == reelIdToShare && reel.getProfile().getProfileName() == profileNameOfReelHolder) {
-                profile.getShareDetail().recievedReels.add(reel);
-            }
-        }
-    }
+    }  
 
     @Override
     public String toString() {
