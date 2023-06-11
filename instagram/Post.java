@@ -22,7 +22,7 @@ public class Post extends Content {
         this.imageOrVideoUrl = imageOrVideoUrl;
     }
 
-    public boolean uploadPost() {
+    public boolean upload() {
         for (Post mypost : this.profile.myPosts) {
             if (mypost.getId() == id) {
                 return false;
@@ -37,7 +37,6 @@ public class Post extends Content {
 
     @Override
     public String toString() {
-
         return "Post [profileName=" + this.profile.getProfileName() + ", id=" + id + ", imageOrVideoUrl=" + imageOrVideoUrl
                 + ", caption=" + this.caption + ", uploaded date=" + this.getUploadedDate() + ", likes="
                 + this.getLikes() + ", comments=" + this.getCommentsList() + " , tags=" + this.getTags() + "]";

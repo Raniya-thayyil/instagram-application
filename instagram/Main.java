@@ -32,7 +32,7 @@ public class Main {
         abin_abi.acceptRequestFrom(manu_man);
 
         Post forestImage = new Post(abin_abi, 1, "forest", "forest.jpg", LocalDate.of(2023, 5, 12));
-        forestImage.uploadPost();
+        forestImage.upload();
         forestImage.like(jo_ann);
         forestImage.like(manu_man);
         forestImage.comment(jo_ann, "wow!", 1);
@@ -40,33 +40,33 @@ public class Main {
         forestImage.tagUser(jo_ann);
         forestImage.share(jo_ann);        
         Post myImage = new Post(abin_abi, 2, "me", "me.jpg",  LocalDate.of(2023, 5, 22));
-        myImage.uploadPost();
+        myImage.upload();
         Reel travelVideo = new Reel(1, abin_abi, "travel", "travel.mp4");
-        travelVideo.uploadReel();
+        travelVideo.upload();
         travelVideo.like(jo_ann);   
         travelVideo.share(jo_ann);    
         travelVideo.comment(jo_ann, "awsome!", 1);
         Story rideStory = new Story(abin_abi, "awsome ride", "ride.mp4", LocalDate.of(2023, 6, 3));
-        rideStory.updateStory();         
+        rideStory.upload();         
 
         Post petImage = new Post(jo_ann, 1, "oreo", "my-pet.mp4", LocalDate.of(2023, 6, 2));
-        petImage.uploadPost();      
+        petImage.upload();      
         Post homeImage = new Post(jo_ann, 2, "home", "home.jpg", LocalDate.of(2023, 5, 14));
-        homeImage.uploadPost();        
+        homeImage.upload();        
         Post skyImage = new Post(jo_ann, 3, "some where in earth", "sky.jpg", LocalDate.of(2023, 6, 5));
-        skyImage.uploadPost();
+        skyImage.upload();
         Story friendsStory = new Story(jo_ann, "my friends", "friends.mp4", LocalDate.of(2023, 6, 5));
-        friendsStory.updateStory();
+        friendsStory.upload();
         Story holydayTrip = new Story(jo_ann, "holyday", "trip.mp4", LocalDate.of(2023, 6, 6));
-        holydayTrip.updateStory();
+        holydayTrip.upload();
         holydayTrip.delete();
         
         Reel familyVideo = new Reel(1, manu_man, "family", "family.mp4");
-        familyVideo.uploadReel();        
+        familyVideo.upload();        
         Story birthdayStory = new Story(manu_man, "happy birthday", "hbd.jpg", LocalDate.of(2023, 6, 5));
-        birthdayStory.updateStory();
+        birthdayStory.upload();
         Story weddingDay = new Story(manu_man, "happy wedding", "wedding.jpg", LocalDate.of(2023, 6, 6));
-        weddingDay.updateStory();
+        weddingDay.upload();
 
         Feed abisFeed = abin_abi.getFeed();      
 

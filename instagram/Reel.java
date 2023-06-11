@@ -19,8 +19,7 @@ public class Reel extends Content {
         this.videoUrl = videoUrl;
     }
 
-    public boolean uploadReel() {
-
+    public boolean upload() {
         for (Reel myReel : this.profile.myReels) {
             if (myReel.getId() == id) {
                 return false;
