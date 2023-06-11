@@ -93,12 +93,12 @@ public class PostTest {
         boolean got;
 
         // test case 1
-         got = forest.uploadPost();
+         got = forest.upload();
         assertTrue(got);
 
         // test case 2
         Post home = new Post(eby_12, 1, "homw", "home.jpg", LocalDate.of(2023, 6, 5));
-        got = home.uploadPost();
+        got = home.upload();
         assertFalse(got);
     }    
 

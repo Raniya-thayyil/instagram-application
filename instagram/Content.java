@@ -13,7 +13,7 @@ public class Content implements Comparator<Content>{
 
     protected int likes;
     private int comments;
-    private Comment comment;
+    
     protected LocalDate uploadedDate;    
 
     ArrayList<UserProfile> likedUsersList = new ArrayList<>();
@@ -106,7 +106,6 @@ public class Content implements Comparator<Content>{
             for (UserProfile profile : this.profile.following) {
                 profile.getFeed().postsOfFollowingUsers.remove(this);
             }
-
         } else if (this.profile.myReels.contains(this)) {
             this.profile.myReels.remove(this);
             for (UserProfile profile : this.profile.following) {
@@ -143,7 +142,7 @@ public class Content implements Comparator<Content>{
     @Override
     public String toString() {
         return "Instagram [profile=" + profile + ", caption=" + caption + ", likes=" + likes + ", comments=" + comments
-                + ", comment=" + comment + ", likedUsersList=" + likedUsersList + ", commentsList=" + commentsList
+                + ", likedUsersList=" + likedUsersList + ", commentsList=" + commentsList
                 + ", tags=" + tags + "]";
     }    
 }

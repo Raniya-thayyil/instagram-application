@@ -10,14 +10,13 @@ public class Story extends Content{
     private String text;   
 
     public Story(UserProfile profileName, String texts, String imageOrVideoUrl, LocalDate updatedDate) {
-
         this.imageOrVideoUrl = imageOrVideoUrl;
         this.text = texts;
         this.uploadedDate = updatedDate;
         this.profile = profileName;
     }
 
-    public void updateStory() {
+    public void upload() {
         LocalDate date = this.uploadedDate;
         LocalDate oneDayAfter = date.plusDays(1);
 
